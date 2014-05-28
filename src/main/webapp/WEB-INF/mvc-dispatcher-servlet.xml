@@ -6,5 +6,7 @@
 
 	<context:component-scan base-package="com.trial" />
 	<mvc:annotation-driven />
+	
+	<mvc:resources mapping="pages/**" location="/pages/" />
 
 </beans>

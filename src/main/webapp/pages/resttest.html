@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+</head>
+<body>
+<h2>rest client for grails</h2>
+
+
+<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+$(document).ready(function(){
+	console.log("from inside jquery init...");
+	//test_ajax("GET","http://localhost:8080/ACTS-WebApps/restapp/person/1","");
+	//test_ajax("GET","http://localhost:8080/ACTS-WebApps/restapp/personsQuery?firstName=GanyaGhagDude","");
+	
+	var person = new Object();
+	person.id = "2372834";
+	person.firstName = "Ganesh";
+	person.lastName = "Ghag";
+	person.mobile = "478348743";
+	person.city = "Thane";
+	person.email = "ganfromjs@myemail.com";
+	
+	test_ajax("POST","http://localhost:8080/ACTS-WebApps/restapp/person", person);
+});
+
+function test_ajax(httpMethod, url, indata){
+	
+	$.ajax({
+		type: httpMethod,
+		url: url,
+		//data: JSON.stringify(indata),
+		data: { name: "John", location: "Boston" },
+		success: function(mydata){
+			console.log("from inside ajax get success ret = "+JSON.stringify(mydata));
+		},
+		dataType: "json",
+		contentType: "applicaton/json"
+		
+		
+	});
+}
+
+
+
+</script>
+
+</body>
+</html>
