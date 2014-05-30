@@ -11,8 +11,8 @@
 
 $(document).ready(function(){
 	console.log("from inside jquery init...");
-	//test_ajax("GET","http://localhost:8080/ACTS-WebApps/restapp/person/1","");
-	//test_ajax("GET","http://localhost:8080/ACTS-WebApps/restapp/personsQuery?firstName=GanyaGhagDude","");
+	test_ajax("GET","http://localhost:8080/ACTS-WebApps/restapp/person/1","");
+	test_ajax("GET","http://localhost:8080/ACTS-WebApps/restapp/personsQuery?firstName=GanyaGhagDude","");
 	
 	var person = new Object();
 	person.id = "2372834";
@@ -23,6 +23,8 @@ $(document).ready(function(){
 	person.email = "ganfromjs@myemail.com";
 	
 	test_ajax("POST","http://localhost:8080/ACTS-WebApps/restapp/person", person);
+	test_ajax("PUT","http://localhost:8080/ACTS-WebApps/restapp/person", person);
+	test_ajax("DELETE","http://localhost:8080/ACTS-WebApps/restapp/person", person);
 });
 
 function test_ajax(httpMethod, url, indata){
@@ -30,8 +32,10 @@ function test_ajax(httpMethod, url, indata){
 	$.ajax({
 		type: httpMethod,
 		url: url,
-		//data: JSON.stringify(indata),
-		data: { name: "John", location: "Boston" },
+		data: JSON.stringify(indata),
+		headers: { 
+	        'Content-Type': 'application/json' 
+	    },
 		success: function(mydata){
 			console.log("from inside ajax get success ret = "+JSON.stringify(mydata));
 		},
